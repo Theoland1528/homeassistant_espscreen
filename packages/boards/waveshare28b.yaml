@@ -129,7 +129,8 @@ touchscreen:
 # The colour order is RGB: with it the pictures above came out right (the community configuration's `st7701s` platform
 # said BGR, which that platform wires the other way round).
 #
-# Timings, pclk and its polarity are the old platform's defaults, which this panel ran with. Pixel clock edge (pclk_inverted)
+# EXPERIMENTAL: values from the official Waveshare demo (wiki pin order, 18 bit, 30 MHz, rising edge, demo porches).
+# Before: timings, pclk and its polarity are the old platform's defaults, which this panel ran with. Pixel clock edge (pclk_inverted)
 # and 8 MHz against 16 MHz made no difference to the picture.
 display:
   - platform: mipi_rgb
@@ -151,21 +152,21 @@ display:
     pclk_pin: GPIO41
     hsync_pin: GPIO38
     vsync_pin: GPIO39
-    pclk_frequency: 16MHz
-    pclk_inverted: true
-    hsync_pulse_width: 10
+    pclk_frequency: 30MHz
+    pclk_inverted: false
+    hsync_pulse_width: 8
     hsync_back_porch: 10
-    hsync_front_porch: 20
-    vsync_pulse_width: 10
-    vsync_back_porch: 10
-    vsync_front_porch: 10
-    pixel_mode: 16bit
+    hsync_front_porch: 50
+    vsync_pulse_width: 2
+    vsync_back_porch: 18
+    vsync_front_porch: 8
+    pixel_mode: 18bit
     color_order: RGB
     invert_colors: false
     data_pins:
-      red: [GPIO17, GPIO18, GPIO8, GPIO3, GPIO46]
-      green: [GPIO9, GPIO10, GPIO14, GPIO13, GPIO12, GPIO11]
-      blue: [GPIO21, GPIO47, GPIO48, GPIO45, GPIO5]
+      red: [GPIO46, GPIO3, GPIO8, GPIO18, GPIO17]
+      green: [GPIO14, GPIO13, GPIO12, GPIO11, GPIO10, GPIO9]
+      blue: [GPIO5, GPIO45, GPIO48, GPIO47, GPIO21]
     update_interval: never
     auto_clear_enabled: false
     # Waveshare's own sequence for this panel, as the community configuration sent it (the command pages, the gamma
