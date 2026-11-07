@@ -45,7 +45,7 @@ substitutions:
   # what the community configuration ran with a handful of pages; this firmware keeps far more next to it, and the
   # Waveshare 4.3 hung on 15 KB free at a quarter (docs/ADDING_A_BOARD.md). Read sensor.<screen>_heap_free after the
   # first boot with a full layout: well over 40 KB free leaves room to try 25 %.
-  LVGL_BUFFER_SIZE: "50%"                       # LVGL draw buffer as a share of the screen, in PSRAM (12% made the dark/light switch repaint in many slow strips)
+  LVGL_BUFFER_SIZE: "12%"
   # More tiles and pages than the 64 and eight of a board without PSRAM (firmware 0.34.0+): the tile list, the cards and the
   # extras live in PSRAM here, and the memory budget (tile_memory.h) says how many of them a layout really takes.
   SCREEN_MAX_TILES: "128"
