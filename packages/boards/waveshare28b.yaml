@@ -129,7 +129,7 @@ touchscreen:
 # The colour order is RGB: with it the pictures above came out right (the community configuration's `st7701s` platform
 # said BGR, which that platform wires the other way round).
 #
-# EXPERIMENTAL: values from the official Waveshare demo (wiki pin order, 18 bit, 30 MHz, rising edge, demo porches).
+# 18 bit + wiki pin order (matches the panel wiring R1-R5/G0-G5/B1-B5). 30 MHz with the demo porches flickers in ESPHome (PSRAM framebuffer), so the calm 16 MHz timings stay.
 # Before: timings, pclk and its polarity are the old platform's defaults, which this panel ran with. Pixel clock edge (pclk_inverted)
 # and 8 MHz against 16 MHz made no difference to the picture.
 display:
@@ -152,14 +152,14 @@ display:
     pclk_pin: GPIO41
     hsync_pin: GPIO38
     vsync_pin: GPIO39
-    pclk_frequency: 30MHz
-    pclk_inverted: false
-    hsync_pulse_width: 8
+    pclk_frequency: 16MHz
+    pclk_inverted: true
+    hsync_pulse_width: 10
     hsync_back_porch: 10
-    hsync_front_porch: 50
-    vsync_pulse_width: 2
-    vsync_back_porch: 18
-    vsync_front_porch: 8
+    hsync_front_porch: 20
+    vsync_pulse_width: 10
+    vsync_back_porch: 10
+    vsync_front_porch: 10
     pixel_mode: 18bit
     color_order: RGB
     invert_colors: false
